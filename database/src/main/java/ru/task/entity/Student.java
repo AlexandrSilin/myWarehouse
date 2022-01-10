@@ -4,11 +4,13 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 @Table(name = "students")
-public class Student {
+public class Student implements Comparable<Student>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +21,7 @@ public class Student {
     private String surname;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private Set<Grade> grades = new HashSet<>();
+    private Set<Grade> grades = new TreeSet<>();
 
     public Student() {
 
@@ -53,5 +55,23 @@ public class Student {
 
     public void setGrades(Set<Grade> grades) {
         this.grades = grades;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return this.surname.trim().compareTo(o.surname.trim());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(id, student.id) && Objects.equals(surname, student.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, surname);
     }
 }

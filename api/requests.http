@@ -1,0 +1,23 @@
+GET http://localhost:9090/api/v1/students/all
+
+###
+
+GET http://localhost:9090/api/v1/grades/all
+
+###
+
+GET http://localhost:9090/api/v1/subjects/all
+
+###
+
+GET http://localhost:9090/api/v1/students/1
+
+###
+
+GET http://localhost:9090/api/v1/grades/1
+
+###
+
+GET http://localhost:9090/api/v1/subjects/1
+
+###
